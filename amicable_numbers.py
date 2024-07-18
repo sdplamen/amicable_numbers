@@ -22,6 +22,9 @@ limit = int(input('Enter the limit for amicable numbers : '))
 amicable_num = []
 for pair in find_amicable_pairs(limit):
     amicable_num.append(pair)
-amicable_num = list(map(str, amicable_num))
-amicable_num = ' '.join(amicable_num)
-print(f'That\'s all amicable numbers in range of {limit} is {amicable_num}')
+if amicable_num == []:
+    print(f'There\'s no amicable_numbers')
+else:
+    amicable_num = list(map(str, amicable_num))
+    amicable_num = ' '.join(amicable_num)
+    print(f'That\'s all amicable numbers in range of {limit} is {amicable_num}')
