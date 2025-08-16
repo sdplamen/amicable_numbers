@@ -13,10 +13,25 @@ def sum_proper_divisors(n):
 
 def find_amicable_pairs(limit):
     amicable_pairs = []
-    for a in range(2, limit + 1):
-        b = sum_proper_divisors(a)
-        if a < b <= limit and sum_proper_divisors(b) == a:
-            amicable_pairs.append((a, b))
+    divisor_sums = {}
+
+    for a in range(2, limit + 1) :
+        if a in divisor_sums :
+            continue
+
+        sum_b = sum_proper_divisors(a)
+
+        if sum_b <= a or sum_b > limit :
+            divisor_sums[a] = sum_b
+            continue
+
+        sum_c = sum_proper_divisors(sum_b)
+
+        if sum_c == a :
+            amicable_pairs.append((a, sum_b))
+            divisor_sums[a] = sum_b
+            divisor_sums[sum_b] = a
+
     return amicable_pairs
 
 def amicable_numbers_view(request):
@@ -24,24 +39,24 @@ def amicable_numbers_view(request):
     limit = None
     error_message = None
 
-    if request.method == 'POST':
+    if request.method == 'POST' :
         limit_str = request.POST.get('limit')
-        if limit_str is None or limit_str == '':
-            error_message = 'Please enter a number.'
-        else:
-            try:
+        if not limit_str :
+            error_message = 'Please enter a number. 🔢'
+        else :
+            try :
                 limit = int(limit_str)
-                if limit < 2:
+                if limit < 2 :
                     error_message = 'Please enter a number greater than or equal to 2.'
-                else:
+                else :
                     amicable_pairs = find_amicable_pairs(limit)
-                    if not amicable_pairs:
+                    if not amicable_pairs :
                         error_message = f'No amicable numbers found up to {limit}.'
-            except ValueError:
+            except ValueError :
                 error_message = 'Please enter a valid integer.'
 
     return render(request, 'index.html', {
-        'amicable_pairs': amicable_pairs,
-        'limit': limit,
-        'error_message': error_message
+        'amicable_pairs' :amicable_pairs,
+        'limit' :limit,
+        'error_message' :error_message
     })
