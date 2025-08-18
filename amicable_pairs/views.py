@@ -39,24 +39,24 @@ def amicable_numbers_view(request):
     limit = None
     error_message = None
 
-    if request.method == 'POST' :
+    if request.method == 'POST':
         limit_str = request.POST.get('limit')
-        if not limit_str :
+        if not limit_str:
             error_message = 'Please enter a number. 🔢'
-        else :
-            try :
+        else:
+            try:
                 limit = int(limit_str)
-                if limit < 2 :
+                if limit < 2:
                     error_message = 'Please enter a number greater than or equal to 2.'
-                else :
+                else:
                     amicable_pairs = find_amicable_pairs(limit)
-                    if not amicable_pairs :
+                    if not amicable_pairs:
                         error_message = f'No amicable numbers found up to {limit}.'
-            except ValueError :
+            except ValueError:
                 error_message = 'Please enter a valid integer.'
 
     return render(request, 'index.html', {
-        'amicable_pairs' :amicable_pairs,
+        'amicable_pairs': amicable_pairs,
         'limit' :limit,
-        'error_message' :error_message
+        'error_message': error_message
     })
