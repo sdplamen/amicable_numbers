@@ -3,21 +3,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Amicable Numbers Calculator</title>
 </head>
 <body>
-    <h1>Amicable Numbers Calculator</h1>
-    <p>Two numbers which sum of the proper divisors of the first is equal to the sum of the proper divisors of the second and vice versa. The proper divisors of the first are the positive integers that divide into the first evenly (without leaving a remainder) but exclude the number itself.</p>
-    <div class="form-container">
-        <form method="post">
-            {% csrf_token %}
-            <label for="limit">Enter the limit for amicable numbers:</label>
-            <input type="number" id="limit" name="limit" value="{{ limit }}" min="2" required>
-            <input type="submit" value="Calculate">
-        </form>
-    </div>
+<main class="container">
+    <header class="title">
+        <h1>Amicable Numbers Calculator</h1>
+        <p>Two numbers which sum of the proper divisors of the first is equal to the sum of the proper divisors of the second and vice versa. The proper divisors of the first are the positive integers that divide into the first evenly (without leaving a remainder) but exclude the number itself.</p>
+    </header>
+    <form class="form-container" method="post">
+        {% csrf_token %}
+        <label for="limit">Enter the limit for amicable numbers:</label>
+        <input type="number" id="limit" name="limit" value="{{ limit }}" min="2" required>
+        <input type="submit" value="Calculate">
+    </form>
     {% if error_message %}
         <p class="error">{{ error_message }}</p>
     {% elif limit %}
@@ -32,5 +34,6 @@
             </div>
         {% endif %}
     {% endif %}
+</main>
 </body>
 </html>
