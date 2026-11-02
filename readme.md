@@ -23,3 +23,6 @@ gcc amicable_numbers.c -o amicable_c
 g++ amicable_numbers.c++ -o amicable_cpp
 ./amicable_cpp
 ```
+
+**Live Demo:** [https://amicable-numbers.onrender.com](https://amicable-numbers.onrender.com)
+Note: Hosted on Render's free tier. If the link takes ~30 seconds to load initially, it is waking up the server instance.
