@@ -16,4 +16,5 @@ amicable_numbers.c
 amicable_numbers.c++
 amicable_numbers.py
 Dockerfile
+Dockerfile.c
 .dockerignore
